@@ -1,28 +1,87 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="grid" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { Grid, html } from "gridjs";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  mounted: () => {
+    const columns = [
+      {
+        name: "Picture",
+        formatter: (cell) =>
+          html(`<img src="${cell}" style="width: 200px;" />`),
+      },
+      {
+        name: "Name",
+      },
+      {
+        name: "Email",
+      },
+      {
+        name: "Phone Number",
+      },
+    ];
+
+    const data = [
+      {
+        picture: "./img/owl.jpg",
+        name: "John",
+        email: " john@john.com",
+        phoneNumber: "000-0000-0000",
+      },
+    ];
+
+    for (let i = 0; i < 5; i++) {
+      data.push(data[0]);
+    }
+
+    const grid = new Grid({
+      columns: columns,
+      data: data,
+      search: {
+        enabled: true,
+      },
+      className: {
+        table: "grid__table",
+        thead: "grid__thead",
+        th: "grid__th",
+        td: "grid__td",
+        search: "grid__search",
+      },
+    });
+
+    grid.render(document.getElementById("grid"));
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.gridjs-container {
+  overflow-x: auto;
+}
+
+.gridjs-table {
+  max-width: 100%;
+  border-collapse: collapse; /* セル同士の境界をなくす */
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  overflow: auto;
+  border: none;
+}
+
+.gridjs-th {
+  padding: 0.5rem 1rem;
+}
+
+.gridjs-td {
+  padding: 0.5rem 1rem;
+}
+
+.gridjs-tr {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
 }
 </style>
