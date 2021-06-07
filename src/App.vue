@@ -35,7 +35,7 @@ export default {
       },
     ];
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 3; i++) {
       data.push(data[0]);
     }
 
@@ -45,12 +45,10 @@ export default {
       search: {
         enabled: true,
       },
-      className: {
-        table: "grid__table",
-        thead: "grid__thead",
-        th: "grid__th",
-        td: "grid__td",
-        search: "grid__search",
+      style: {
+        table: {
+          width: "600px",
+        },
       },
     });
 
@@ -72,16 +70,21 @@ export default {
   border: none;
 }
 
-.gridjs-th {
-  padding: 0.5rem 1rem;
+th.gridjs-th {
+  border: 1px solid lightgray;
+  width: 150px;
+  padding: 1rem;
+  text-align: center;
 }
 
-.gridjs-td {
-  padding: 0.5rem 1rem;
+td.gridjs-td {
+  border: 1px solid lightgray;
+  height: 100px;
+  text-align: right;
+  padding-right: 1rem;
 }
-
-.gridjs-tr {
-  border-top: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
+td.gridjs-td:first-child {
+  text-align: center;
+  padding-right: 0;
 }
 </style>
